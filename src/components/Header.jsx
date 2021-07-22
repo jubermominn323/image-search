@@ -8,7 +8,10 @@ export default function Header() {
         console.log(event.target.value)
         // console.log(searchText)
         setSearchText(event.target.value)
-        if(event.target.value){
+        if(event.target.value === ""){
+            setImages([])
+        }
+        else{
             fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=2511739074e8bebd4e4e9a945b4c9382&text=${event.target.value}&format=json&nojsoncallback=1`)
             .then(res => res.json())
             .then(result =>{
@@ -22,8 +25,8 @@ export default function Header() {
     }
     return (
         <>
-        <header>
-            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+        <header style={{marginBottom:"80px"}}>
+            <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-dark">
             <div className="container-fluid d-flex justify-content-center">
                 {/* <h1 className="bg-light">Search Images</h1> */}
                 <form className="d-flex">
